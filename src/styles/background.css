@@ -1,0 +1,8 @@
+.background {
+    background-image: url('../../public/predio-cps.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+    width: 100vw;
+}
