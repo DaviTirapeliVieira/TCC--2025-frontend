@@ -9,8 +9,7 @@ export const ChatService = async (mensagem) => {
     const response = await axios.post(`${URL}`, {
       mensagem,
     });
-
-    // resposta da IA
+    
     return response.data.resposta; // Rezo para que o backend retorne
   } catch (error) {
     console.error('Erro na requisição:', error);

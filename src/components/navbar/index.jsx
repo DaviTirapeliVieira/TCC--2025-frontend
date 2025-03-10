@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { buscarAvisos, buscarEventos, buscarNovidades } from "../../connection/navbarService";
+import { buscarAvisos,buscarEventos,buscarNovidades } from "../../connection/navbarService";
 import "./style.css";
 
 export function Navbar() {
@@ -63,7 +63,11 @@ export function Navbar() {
           <div className="offcanvas-body">
             <ul className="navbar-nav justify-content-end flex-grow-1 pe-3">
               <li className="nav-item fs-5">
-                <Link className="nav-link active" aria-current="page" to="/">
+                <Link
+                  className="nav-link active"
+                  aria-current="page"
+                  to="/user"
+                >
                   <i className="bi bi-house me-2"></i>Home
                 </Link>
               </li>
@@ -85,6 +89,20 @@ export function Navbar() {
                       </Link>
                     </li>
                   ))}
+                  {eventos.map((evento) => (
+                    <li key={evento.id}>
+                      <Link className="dropdown-item" to="#">
+                        {evento.nome}
+                      </Link>
+                    </li>
+                  ))}
+                  {novidades.map((novidade) => (
+                    <li key={novidade.id}>
+                      <Link className="dropdown-item" to="#">
+                        {novidade.titulo}
+                      </Link>
+                    </li>
+                  ))}
                 </ul>
               </li>
               <li className="nav-item fs-5 dropdown">
@@ -98,10 +116,24 @@ export function Navbar() {
                   <i className="bi bi-mortarboard me-2"></i>Fatec
                 </Link>
                 <ul className="dropdown-menu">
+                  {avisos.map((aviso) => (
+                    <li key={aviso.id}>
+                      <Link className="dropdown-item" to="#">
+                        {aviso.titulo}
+                      </Link>
+                    </li>
+                  ))}
                   {eventos.map((evento) => (
                     <li key={evento.id}>
                       <Link className="dropdown-item" to="#">
                         {evento.nome}
+                      </Link>
+                    </li>
+                  ))}
+                  {novidades.map((novidade) => (
+                    <li key={novidade.id}>
+                      <Link className="dropdown-item" to="#">
+                        {novidade.titulo}
                       </Link>
                     </li>
                   ))}
@@ -118,6 +150,20 @@ export function Navbar() {
                   <i className="bi bi-buildings me-2"></i>CPS
                 </Link>
                 <ul className="dropdown-menu">
+                  {avisos.map((aviso) => (
+                    <li key={aviso.id}>
+                      <Link className="dropdown-item" to="#">
+                        {aviso.titulo}
+                      </Link>
+                    </li>
+                  ))}
+                  {eventos.map((evento) => (
+                    <li key={evento.id}>
+                      <Link className="dropdown-item" to="#">
+                        {evento.nome}
+                      </Link>
+                    </li>
+                  ))}
                   {novidades.map((novidade) => (
                     <li key={novidade.id}>
                       <Link className="dropdown-item" to="#">
@@ -148,8 +194,8 @@ export function Navbar() {
                         className="rounded-circle foto-user"
                       />
                       <div>
-                        <p className="mb-0 fw-bold">Seu Nome</p>
-                        <p className="mb-0 text-muted">seuemail@dominio.com</p>
+                        <p className="mb-0 fw-bold">{usuario.nome}</p>
+                        <p className="mb-0 text-muted">{usuario.email}</p>
                       </div>
                     </div>
                     <Link
@@ -165,12 +211,12 @@ export function Navbar() {
                     </Link>
                   </>
                 ) : (
-                <>
-                  <Link className="nav-link" to="/login">
-                    <i className="bi bi-door-open me-2"></i>
-                    <strong>Login</strong>
-                  </Link>
-                  <form className="d-flex mt-2" role="search">
+                  <>
+                    <Link className="nav-link" to="/login">
+                      <i className="bi bi-door-open me-2"></i>
+                      <strong>Login</strong>
+                    </Link>
+                    <form className="d-flex mt-2" role="search">
                       <input
                         className="form-control me-2"
                         type="search"
@@ -181,7 +227,7 @@ export function Navbar() {
                         Busque
                       </button>
                     </form>
-                </>
+                  </>
                 )}
               </li>
             </ul>

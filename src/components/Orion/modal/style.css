@@ -66,6 +66,16 @@
   display: flex;
   flex-direction: column;
 }
+
+.corpo-do-chat::-webkit-scrollbar {
+  width: 6px;
+  
+}
+
+.corpo-do-chat::-webkit-scrollbar-thumb {
+  border-radius: 12px;
+  background: #4164ff;
+}
   
 .menssagem {
   margin: 5px 0;

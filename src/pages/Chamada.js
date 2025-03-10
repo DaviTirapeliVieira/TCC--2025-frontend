@@ -1,54 +1,44 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { Navbar } from "../components/navbarOn";
 import { Orion } from "../components/Orion/modal/index";
-import ChamadaService from "../connection/chamadaService"; // Importando o serviço
+import { ChamadaService } from "../connection/chamadaService"; // Importando o serviço
+import axios from "axios";
 
 export default function Chamada() {
-  // Dados dos alunos
-  const alunos = [
-    {
-      nome: "Davi Vieira",
-      idade: "16 anos",
-      serie_classe: "3ºDS",
-      foto: "./user.jpg",
-      mencoes: ["", "", ""],
-    },
-    {
-      nome: "Luis",
-      idade: "18 anos",
-      serie_classe: "3ºDS",
-      foto: "",
-      mencoes: ["", "", ""],
-    },
-    {
-      nome: "João",
-      idade: "30 anos",
-      serie_classe: "",
-      foto: "",
-      mencoes: ["", "", ""],
-    },
-  ];
-
+  const [alunos, setAlunos] = useState([]);
   // Informações do aluno no modal
   const [modalInfo, setModalInfo] = useState(null);
   // Aluno selecionado
   const [selectedIndex, setSelectedIndex] = useState(0);
   // Ref para os checkboxes
   const checkboxesRef = useRef([]);
+  // presença dos alunos
+  const [presenca, setPresenca] = useState({});
 
-  // Controlar a presença dos alunos
-  const [presenca, setPresenca] = useState(
-    alunos.reduce((acc, aluno) => {
-      acc[aluno.nome] = false; // Inicia com todos como ausentes
-      return acc;
-    }, {})
-  );
+  useEffect(() => {
+    const alunosInfo = async () => {
+      try {
+        const response = await axios.get(); // URL necessaria
+        setAlunos(response.data);
+        setPresenca(
+          response.data.reduce((acc, alunos) => {
+            acc[alunos.nome] = false;
+            return acc;
+          }, {})
+        );
+      } catch (error) {
+        console.error("Erro na busca dos dados", error);
+        alert("Erro no carregamento dos dados");
+      }
+    };
 
-  // Marcar ou desmarcar presença
+    alunosInfo();
+  }, []);
+
+  // Marca ou desmarcar presença
   const MarcarPresenca = (nome) => {
     setPresenca((prevPresenca) => {
       const novaPresenca = { ...prevPresenca, [nome]: !prevPresenca[nome] };
-      // Chamar o serviço para enviar os dados de presença ao backend
       ChamadaService(novaPresenca);
       return novaPresenca;
     });
@@ -64,7 +54,7 @@ export default function Chamada() {
     setModalInfo(null);
   };
 
-  // Selecionar o aluno usando a seta
+  // Seleciona o aluno usando a seta
   const MoverComSeta = (e) => {
     if (e.key === "ArrowDown") {
       setSelectedIndex((prevIndex) => (prevIndex + 1) % alunos.length);

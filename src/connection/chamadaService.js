@@ -3,9 +3,9 @@
 import axios from "axios";
 const URL = "http://localhost:8000/api"; // muda a URL
 
-const ChamadaService = async () => {
+export const ChamadaService = async (presenca) => {
   try {
-    const response = await axios.post(`${URL}/chamada`);
+    const response = await axios.post(`${URL}/chamada`, { presenca });
     if (response.data.success) {
       alert("Presença salva com sucesso!");
     } else {
@@ -16,8 +16,6 @@ const ChamadaService = async () => {
 
   } catch (error) {
     console.error("Erro na requisição:", error);
-    alert("Houve um erro ao tentar salvar a presença."); // alerta de erro
+    alert("Houve um erro ao tentar salvar a presença.");
   };
 }
-
-export default ChamadaService;

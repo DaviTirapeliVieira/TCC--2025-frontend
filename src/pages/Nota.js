@@ -26,7 +26,7 @@ export default function Nota() {
       }
     };
 
-    carregarDadosAlunos(); // chama a funcao ao carregar o componente
+    carregarDadosAlunos();
   }, []); // requisição so sera feita uma vez
 
   // atualiza a menção de um aluno
@@ -70,7 +70,7 @@ export default function Nota() {
 
   // mensagem de carregamento
   if (loading) {
-    return <div>Aguarde...</div>;
+    return <div>Carregando...</div>
   }
 
   // mensagem de erro

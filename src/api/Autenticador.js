@@ -3,13 +3,13 @@ import React, { createContext, useState, useEffect } from "react";
 // contexto de autenticação
 const AutRota = createContext();
 
-// verifica se o usuário está autenticado (logado)
+// verifica se o usuário logado
 const Autenticado = () => {
   return localStorage.getItem("tokenAut") !== null;
 };
 
 const AutenticadoInfo = ({ children }) => {
-  // gerenciar a autenticação e o token
+  // gerencia a autenticação e o token
   const [estaAutenticado, setAutenticado] = useState(Autenticado());
   const [tokenAut, setTokenAut] = useState(localStorage.getItem("tokenAut"));
 
