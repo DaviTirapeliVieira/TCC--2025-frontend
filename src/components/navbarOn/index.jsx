@@ -1,16 +1,8 @@
-import React, { useContext } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { AutRota } from "../../api/Autenticador";
+import { Link} from "react-router-dom";
 import "./style.css";
 
 export function Navbar() {
-  const { logout } = useContext(AutRota); // Acessa a função logout do contexto
-  const navigate = useNavigate(); // Usado para redirecionar o usuário após o logout
 
-  const LogoutOperation = () => {
-    logout();
-    navigate("/login");
-  };
 
   return (
     <nav className="navbar bg-body-tertiary fixed-top">
@@ -130,7 +122,6 @@ export function Navbar() {
               <li className="nav-item fs-5 position-fixed bottom-0 end-0 p-3">
                 <Link
                   className="nav-link"
-                  onClick={LogoutOperation}
                   to="/login"
                 >
                   <i class="bi bi-box-arrow-right me-2"></i>

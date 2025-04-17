@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import { Navbar } from "../components/navbarOn";
 import { Orion } from "../components/Orion/modal/index";
 import { ChamadaService } from "../connection/chamadaService"; // Importando o serviço
+import ModalStudent from "../components/modalStudent/modal.jsx"
 import axios from "axios";
 
 export default function Chamada() {
@@ -28,7 +29,6 @@ export default function Chamada() {
         );
       } catch (error) {
         console.error("Erro na busca dos dados", error);
-        alert("Erro no carregamento dos dados");
       }
     };
 
@@ -52,6 +52,14 @@ export default function Chamada() {
   // Fecha o modal
   const FecharModal = () => {
     setModalInfo(null);
+  };
+
+  // fecha o modal ao clicar fora
+  const ClicarFora = (e) => {
+    // Verifica se o clique foi fora do conteúdo do modal
+    if (e.target.classList.contains("modal-background")) {
+      FecharModal();
+    }
   };
 
   // Seleciona o aluno usando a seta
@@ -111,56 +119,11 @@ export default function Chamada() {
           <button className="d-flex ms-auto btn btn-primary mt-3">
             Salvar Chamada
           </button>
-
-          {modalInfo && (
-            <div
-              className="modal fade show"
-              id="studentModal"
-              tabIndex="-1"
-              style={{ display: "block" }}
-              aria-labelledby="studentModalLabel"
-              aria-hidden="true"
-            >
-              <div className="modal-dialog">
-                <div className="modal-content">
-                  <div className="modal-header">
-                    <h5 className="modal-title" id="studentModalLabel">
-                      Informações do Aluno
-                    </h5>
-                    <button
-                      type="button"
-                      className="btn-close"
-                      onClick={FecharModal}
-                      aria-label="Close"
-                    ></button>
-                  </div>
-                  <div className="modal-body">
-                    <div className="text-center mb-3">
-                      <img
-                        className="img-fluid rounded-circle"
-                        src={modalInfo.foto}
-                        alt={modalInfo.nome}
-                        style={{
-                          width: "150px",
-                          height: "150px",
-                          objectFit: "cover",
-                        }}
-                      />
-                    </div>
-                    <p>
-                      <strong>Nome:</strong> {modalInfo.nome}
-                    </p>
-                    <p>
-                      <strong>Idade:</strong> {modalInfo.idade}
-                    </p>
-                    <p>
-                      <strong>Serie/Classe:</strong> {modalInfo.serie_classe}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          )}
+          <ModalStudent
+            modalInfo={modalInfo}
+            FecharModal={FecharModal}
+            ClicarFora={ClicarFora}
+          />
         </div>
       </div>
       <Orion />

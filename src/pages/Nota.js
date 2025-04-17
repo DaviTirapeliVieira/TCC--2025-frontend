@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Navbar } from "../components/navbarOn";
 import { Orion } from "../components/Orion/modal/index";
 import { DadosAlunos } from "../connection/notaService";
+import ModalStudent from "../components/modalStudent/modal.jsx"
 
 export default function Nota() {
   // armazena os dados do alunos
@@ -66,6 +67,14 @@ export default function Nota() {
   // fecha o modal
   const FecharModal = () => {
     setModalInfo(null);
+  };
+
+  // Função para fechar o modal ao clicar fora
+  const ClicarFora = (e) => {
+    // Verifica se o clique foi fora do conteúdo do modal
+    if (e.target.classList.contains("modal-background")) {
+      FecharModal();
+    }
   };
 
   // mensagem de carregamento
@@ -156,55 +165,11 @@ export default function Nota() {
             </button>
           </div>
         </div>
-
-        {modalInfo && (
-          <div
-            className="d-block modal fade show"
-            id="modal-aluno"
-            tabIndex="-1"
-            aria-labelledby="label-modal-aluno"
-            aria-hidden="true"
-          >
-            <div className="modal-dialog">
-              <div className="modal-content">
-                <div className="modal-header">
-                  <h5 className="modal-title" id="label-modal-aluno">
-                    Informações do Aluno
-                  </h5>
-                  <button
-                    type="button"
-                    className="btn-close"
-                    onClick={FecharModal}
-                    aria-label="Close"
-                  ></button>
-                </div>
-                <div className="modal-body">
-                  <div className="text-center mb-3">
-                    <img
-                      className="img-fluid rounded-circle"
-                      src={modalInfo.foto}
-                      alt={modalInfo.nome}
-                      style={{
-                        width: "150px",
-                        height: "150px",
-                        objectFit: "cover",
-                      }}
-                    />
-                  </div>
-                  <p>
-                    <strong>Nome:</strong> {modalInfo.nome}
-                  </p>
-                  <p>
-                    <strong>Idade:</strong> {modalInfo.idade}
-                  </p>
-                  <p>
-                    <strong>Serie/Classe:</strong> {modalInfo.serie_classe}
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        )}
+        <ModalStudent
+          modalInfo={modalInfo}
+          FecharModal={FecharModal}
+          ClicarFora={ClicarFora}
+        />
       </div>
       <Orion />
     </div>
