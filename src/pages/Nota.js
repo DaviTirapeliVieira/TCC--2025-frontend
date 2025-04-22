@@ -3,6 +3,7 @@ import { Navbar } from "../components/navbarOn";
 import { Orion } from "../components/Orion/modal/index";
 import { DadosAlunos } from "../connection/notaService";
 import ModalStudent from "../components/modalStudent/modal.jsx"
+import ModalLoading from "../components/modalLoading/index.jsx";
 
 export default function Nota() {
   // armazena os dados do alunos
@@ -18,11 +19,11 @@ export default function Nota() {
   useEffect(() => {
     const carregarDadosAlunos = async () => {
       try {
-        const dados = await DadosAlunos();
-        setAlunosStatus(dados);
+        const response = await DadosAlunos();
+        setAlunosStatus(response);
         setLoading(false); // a requisição terminou
-      } catch (err) {
-        setError("Erro ao carregar os dados dos alunos");
+      } catch (error) {
+        setError("Erro ao carregar as notas dos alunos");
         setLoading(false); // a requisição terminou, mesmo com erro
       }
     };
@@ -79,12 +80,12 @@ export default function Nota() {
 
   // mensagem de carregamento
   if (loading) {
-    return <div>Carregando...</div>
+    return <ModalLoading message="Carregando..." />;
   }
 
   // mensagem de erro
   if (error) {
-    return <div>{error}</div>;
+    return <ModalLoading message={error} />;
   }
 
   return (

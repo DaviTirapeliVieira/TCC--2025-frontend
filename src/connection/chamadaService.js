@@ -7,15 +7,15 @@ export const ChamadaService = async (presenca) => {
   try {
     const response = await axios.post(`${URL}/chamada`, { presenca });
     if (response.data.success) {
-      alert("Presença salva com sucesso!");
+      console.error("Presença salva com sucesso!");
     } else {
-      alert("Erro ao salvar presença.");
+      console.error("Erro ao salvar presença.");
     }
 
     return response.data; // retorna os dados após verificar a resposta
 
   } catch (error) {
     console.error("Erro na requisição:", error);
-    alert("Houve um erro ao tentar salvar a presença.");
+    console.error("Houve um erro ao tentar salvar a presença.");
   };
 }

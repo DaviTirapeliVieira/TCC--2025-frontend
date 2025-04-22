@@ -9,7 +9,7 @@ export const DadosAlunos = async () => {
         const response = await axios.get(`${URL}/nota`);
         return response.data;
     } catch(error) {
-        console.error("Erro", error);
+        console.error("Erro na requisição da notas", error);
         throw error;
     }
 };

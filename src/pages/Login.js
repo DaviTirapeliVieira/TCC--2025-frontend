@@ -10,7 +10,7 @@ export default function Login() {
         <div className="card card-login p-4 container-back w-75">
           <div className="row">
             <div className="col-md-6">
-              <h2 className="text-center mb-4">Entrar</h2>
+              <h2 className="text-start mb-4">Entrar</h2>
               <FormularioLogin />
             </div>
             <Autenticador />

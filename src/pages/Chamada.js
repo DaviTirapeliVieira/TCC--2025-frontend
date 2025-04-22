@@ -1,9 +1,9 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Navbar } from "../components/navbarOn";
 import { Orion } from "../components/Orion/modal/index";
-import { ChamadaService } from "../connection/chamadaService"; // Importando o serviço
-import ModalStudent from "../components/modalStudent/modal.jsx"
-import axios from "axios";
+import { ChamadaService } from "../connection/chamadaService";
+import ModalStudent from "../components/modalStudent/modal.jsx";
+import ModalLoading from "../components/modalLoading/index.jsx";
 
 export default function Chamada() {
   const [alunos, setAlunos] = useState([]);
@@ -15,11 +15,15 @@ export default function Chamada() {
   const checkboxesRef = useRef([]);
   // presença dos alunos
   const [presenca, setPresenca] = useState({});
+  // controle de loading
+  const [loading, setLoading] = useState(true);
+  // erros
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const alunosInfo = async () => {
       try {
-        const response = await axios.get(); // URL necessaria
+        const response = await ChamadaService();
         setAlunos(response.data);
         setPresenca(
           response.data.reduce((acc, alunos) => {
@@ -27,8 +31,10 @@ export default function Chamada() {
             return acc;
           }, {})
         );
+        setLoading(false); // a requisição terminou
       } catch (error) {
-        console.error("Erro na busca dos dados", error);
+        setError("Erro ao carregar os dados da chamada");
+        setLoading(false); // a requisição terminou
       }
     };
 
@@ -76,6 +82,16 @@ export default function Chamada() {
       MarcarPresenca(alunos[selectedIndex].nome); // Muda a presença ao pressionar Enter
     }
   };
+
+   // mensagem de carregamento
+   if (loading) {
+    return <ModalLoading message="Carregando..." />;
+  }
+
+  // mensagem de erro
+  if (error) {
+    return <ModalLoading message={error} />;
+  }
 
   return (
     <div>
