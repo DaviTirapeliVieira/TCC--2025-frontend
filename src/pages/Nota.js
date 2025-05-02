@@ -1,44 +1,46 @@
+// notes screen
+
 import React, { useState, useEffect } from "react";
 import { Navbar } from "../components/navbarOn";
 import { Orion } from "../components/Orion/modal/index";
 import { DadosAlunos } from "../connection/notaService";
-import ModalStudent from "../components/modalStudent/modal.jsx"
+import ModalStudent from "../components/modalStudent/modal.jsx";
 import ModalLoading from "../components/modalLoading/index.jsx";
 
 export default function Nota() {
-  // armazena os dados do alunos
+  // stores student data
   const [alunosStatus, setAlunosStatus] = useState([]);
-  // armazena informacoes do aluno no modal
+  // stores student information in the modal
   const [modalInfo, setModalInfo] = useState(null);
-  // controle de loading
+  // loading control
   const [loading, setLoading] = useState(true);
-  // erros
+  // errors
   const [error, setError] = useState(null);
 
-  // obter os dados dos alunos
+  // get student data
   useEffect(() => {
     const carregarDadosAlunos = async () => {
       try {
         const response = await DadosAlunos();
         setAlunosStatus(response);
-        setLoading(false); // a requisição terminou
+        setLoading(false); // the request has finished
       } catch (error) {
         setError("Erro ao carregar as notas dos alunos");
-        setLoading(false); // a requisição terminou, mesmo com erro
+        setLoading(false); // the request has finished
       }
     };
 
     carregarDadosAlunos();
-  }, []); // requisição so sera feita uma vez
+  }, []);
 
-  // atualiza a menção de um aluno
+  // update a student's mention
   const atualizarMencao = (index, bimestre, valor) => {
     const novosAlunos = [...alunosStatus];
     novosAlunos[index].mencoes[bimestre] = valor;
     setAlunosStatus(novosAlunos);
   };
 
-  // adiciona mais inputs de mencao para todos os alunos
+  // add more mention inputs for all students
   const adicionarMencao = () => {
     const novosAlunos = alunosStatus.map((aluno) => {
       if (aluno.mencoes.length < 5) {
@@ -49,7 +51,7 @@ export default function Nota() {
     setAlunosStatus(novosAlunos);
   };
 
-  // Remove a ultima menção - mínimo de 3 inputs
+  // Remove the last mention
   const removerMencao = () => {
     const novosAlunos = alunosStatus.map((aluno) => {
       if (aluno.mencoes.length > 3) {
@@ -60,30 +62,29 @@ export default function Nota() {
     setAlunosStatus(novosAlunos);
   };
 
-  // abre o modal com as informações do aluno
+  // opens the modal with the student's information
   const DadosAluno = (aluno) => {
     setModalInfo(aluno);
   };
 
-  // fecha o modal
+  // close the modal
   const FecharModal = () => {
     setModalInfo(null);
   };
 
-  // Função para fechar o modal ao clicar fora
+  // Function to close the modal when clicking outside
   const ClicarFora = (e) => {
-    // Verifica se o clique foi fora do conteúdo do modal
     if (e.target.classList.contains("modal-background")) {
       FecharModal();
     }
   };
 
-  // mensagem de carregamento
+  // loading message
   if (loading) {
     return <ModalLoading message="Carregando..." />;
   }
 
-  // mensagem de erro
+  // error message
   if (error) {
     return <ModalLoading message={error} />;
   }
@@ -92,7 +93,7 @@ export default function Nota() {
     <div>
       <Navbar />
       <div className="container px-4">
-        <h2 style={{ marginTop: "5rem" }}>
+        <h2>
           Notas - Classe {alunosStatus[0]?.serie_classe}
         </h2>
         <div className="container">

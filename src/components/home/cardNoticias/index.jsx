@@ -8,7 +8,7 @@ export function Noticias() {
   useEffect(() => {
     const carregarNoticias = async () => {
       const dados = await NoticiasService();
-      setNoticias(dados); // Atualiza o estado com os dados da API
+      setNoticias(dados); // Updates state with data from API
     };
 
     carregarNoticias();

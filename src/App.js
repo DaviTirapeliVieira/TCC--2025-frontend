@@ -7,6 +7,9 @@ import Chamada from "./pages/Chamada";
 import Nota from "./pages/Nota";
 import CadastroAluno from "./pages/CadastroAluno";
 import CadastroClasse from "./pages/CadastroClasse";
+import Calendario from "./pages/Calendario";
+import PTDForm from "./pages/PTD";
+import GraficoPresenca from "./pages/GraficoPresenca";
 import Elo from "./pages/Elo";
 import NotFound from "./not-found";
 import "./App.css";
@@ -24,6 +27,9 @@ export default function App() {
             <Route path="/nota" element={<Nota />} />
             <Route path="/cadastro-aluno" element={<CadastroAluno />} />
             <Route path="/cadastro-classe" element={<CadastroClasse />} />
+            <Route path="/calendario" element={<Calendario />} />
+            <Route path="/ptd-form" element={<PTDForm />} />
+            <Route path="/grafico-presenca" element={<GraficoPresenca />} />
             <Route path="/elo" element={<Elo />} />
             <Route path="*" element={<NotFound />} />
           </Routes>

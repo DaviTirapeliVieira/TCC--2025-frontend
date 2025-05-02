@@ -1,12 +1,8 @@
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { buscarAvisos,buscarEventos,buscarNovidades } from "../../connection/navbarService";
 import "./style.css";
 
 export function Navbar() {
-  const [avisos, setAvisos] = useState([]);
-  const [eventos, setEventos] = useState([]);
-  const [novidades, setNovidades] = useState([]);
   const [usuario, setUsuario] = useState(null);
 
   // Verifica se tem usuario logado no localStorage
@@ -15,16 +11,6 @@ export function Navbar() {
     if (usuarioLogado) {
       setUsuario(usuarioLogado);
     }
-  }, []);
-
-  // Carregar dados da navbar
-  useEffect(() => {
-    async function carregarDados() {
-      setAvisos(await buscarAvisos());
-      setEventos(await buscarEventos());
-      setNovidades(await buscarNovidades());
-    }
-    carregarDados();
   }, []);
 
   return (
@@ -82,27 +68,16 @@ export function Navbar() {
                   <i className="bi bi-backpack me-2"></i>Etec
                 </Link>
                 <ul className="dropdown-menu">
-                  {avisos.map((aviso) => (
-                    <li key={aviso.id}>
-                      <Link className="dropdown-item" to="#">
-                        {aviso.titulo}
-                      </Link>
-                    </li>
-                  ))}
-                  {eventos.map((evento) => (
-                    <li key={evento.id}>
-                      <Link className="dropdown-item" to="#">
-                        {evento.nome}
-                      </Link>
-                    </li>
-                  ))}
-                  {novidades.map((novidade) => (
-                    <li key={novidade.id}>
-                      <Link className="dropdown-item" to="#">
-                        {novidade.titulo}
-                      </Link>
-                    </li>
-                  ))}
+                  <li>
+                    <Link className="dropdown-item" to="/avisos">
+                      Avisos
+                    </Link>
+                  </li>
+                  <li>
+                    <Link className="dropdown-item" to="/eventos">
+                      Eventos
+                    </Link>
+                  </li>
                 </ul>
               </li>
               <li className="nav-item fs-5 dropdown">
@@ -116,27 +91,16 @@ export function Navbar() {
                   <i className="bi bi-mortarboard me-2"></i>Fatec
                 </Link>
                 <ul className="dropdown-menu">
-                  {avisos.map((aviso) => (
-                    <li key={aviso.id}>
-                      <Link className="dropdown-item" to="#">
-                        {aviso.titulo}
-                      </Link>
-                    </li>
-                  ))}
-                  {eventos.map((evento) => (
-                    <li key={evento.id}>
-                      <Link className="dropdown-item" to="#">
-                        {evento.nome}
-                      </Link>
-                    </li>
-                  ))}
-                  {novidades.map((novidade) => (
-                    <li key={novidade.id}>
-                      <Link className="dropdown-item" to="#">
-                        {novidade.titulo}
-                      </Link>
-                    </li>
-                  ))}
+                  <li>
+                    <Link className="dropdown-item" to="/avisos">
+                      Avisos
+                    </Link>
+                  </li>
+                  <li>
+                    <Link className="dropdown-item" to="/eventos">
+                      Eventos
+                    </Link>
+                  </li>
                 </ul>
               </li>
               <li className="nav-item fs-5 dropdown">
@@ -150,27 +114,16 @@ export function Navbar() {
                   <i className="bi bi-buildings me-2"></i>CPS
                 </Link>
                 <ul className="dropdown-menu">
-                  {avisos.map((aviso) => (
-                    <li key={aviso.id}>
-                      <Link className="dropdown-item" to="#">
-                        {aviso.titulo}
-                      </Link>
-                    </li>
-                  ))}
-                  {eventos.map((evento) => (
-                    <li key={evento.id}>
-                      <Link className="dropdown-item" to="#">
-                        {evento.nome}
-                      </Link>
-                    </li>
-                  ))}
-                  {novidades.map((novidade) => (
-                    <li key={novidade.id}>
-                      <Link className="dropdown-item" to="#">
-                        {novidade.titulo}
-                      </Link>
-                    </li>
-                  ))}
+                  <li>
+                    <Link className="dropdown-item" to="/avisos">
+                      Avisos
+                    </Link>
+                  </li>
+                  <li>
+                    <Link className="dropdown-item" to="/eventos">
+                      Eventos
+                    </Link>
+                  </li>
                 </ul>
               </li>
               <li className="nav-item fs-5">
@@ -183,8 +136,8 @@ export function Navbar() {
                         placeholder="O que deseja Buscar?"
                         aria-label="Search"
                       ></input>
-                      <button className="btn btn-outline-success" type="submit">
-                        Busque
+                      <button className="btn btn-outline-danger" type="submit">
+                        <i class="bi bi-search"></i>
                       </button>
                     </form>
                     <div class="d-flex align-items-center bg-white p-3 rounded shadow-sm margin-perfil">
@@ -223,8 +176,8 @@ export function Navbar() {
                         placeholder="O que deseja Buscar?"
                         aria-label="Search"
                       ></input>
-                      <button className="btn btn-outline-success" type="submit">
-                        Busque
+                      <button className="btn btn-outline-danger" type="submit">
+                        <i class="bi bi-search"></i>
                       </button>
                     </form>
                   </>

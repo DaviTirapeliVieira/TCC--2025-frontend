@@ -1,4 +1,4 @@
-// Campo de cadastro(entrada) do nome do Professor
+// Teacher's name registration (input) field
 
 export function InputNameProf() {
     return (

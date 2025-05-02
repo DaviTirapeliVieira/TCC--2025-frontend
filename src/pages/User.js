@@ -1,4 +1,4 @@
-// Tela com as informações do Usuario
+// Screen with User information
 
 import { Navbar } from "../components/navbarOn";
 import { InformacaoUsuario } from "../components/user/informacaoUsuario";

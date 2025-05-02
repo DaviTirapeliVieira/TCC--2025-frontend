@@ -1,21 +1,16 @@
-// Ajax da chamada
-
-import axios from "axios";
-const URL = "http://localhost:8000/api"; // muda a URL
+import api from "./api";
 
 export const ChamadaService = async (presenca) => {
   try {
-    const response = await axios.post(`${URL}/chamada`, { presenca });
+    const response = await api.post("/chamada", { presenca });
     if (response.data.success) {
-      console.error("Presença salva com sucesso!");
+      console.log("Presença salva com sucesso!");
     } else {
-      console.error("Erro ao salvar presença.");
+      console.warn("Erro ao salvar presença.");
     }
-
-    return response.data; // retorna os dados após verificar a resposta
-
+    return response.data;
   } catch (error) {
-    console.error("Erro na requisição:", error);
-    console.error("Houve um erro ao tentar salvar a presença.");
-  };
-}
+    console.error("Erro ao registrar presença:", error?.response?.data || error.message);
+    throw new Error("Não foi possível registrar a presença.");
+  }
+};

@@ -1,15 +1,11 @@
-// Ajax das notas
-
-import axios from 'axios';
-const URL = "http://localhost:8000/api"; // muda a URL
-
+import api from "./api";
 
 export const DadosAlunos = async () => {
-    try {
-        const response = await axios.get(`${URL}/nota`);
-        return response.data;
-    } catch(error) {
-        console.error("Erro na requisição da notas", error);
-        throw error;
-    }
+  try {
+    const response = await api.get("/nota");
+    return response.data;
+  } catch (error) {
+    console.error("Erro ao buscar notas:", error?.response?.data || error.message);
+    throw new Error("Não foi possível carregar as notas dos alunos.");
+  }
 };

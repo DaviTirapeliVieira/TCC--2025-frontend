@@ -1,4 +1,4 @@
-// Tela de Login
+// login screen
 
 import { FormularioLogin } from "../components/login/formLogin";
 import { Autenticador } from "../components/login/autenticador";

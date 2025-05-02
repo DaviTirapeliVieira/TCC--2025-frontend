@@ -1,4 +1,4 @@
-// Input do Nome do Aluno
+// Student Name Input
 
 export function InputNome() {
     return (

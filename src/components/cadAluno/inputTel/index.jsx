@@ -1,4 +1,4 @@
-// Input de Telefone do Aluno
+// Student Phone Input
 
 export function InputTel() {
     return(

@@ -4,31 +4,31 @@ import "./style.css";
 
 export function Orion() {
   const [mostrarModal, setVerModal] = useState(false);
-  // armazena as mensagens do chat
+  // stores chat messages
   const [mensagens, setMensagens] = useState([
     { texto: "Olá! Como posso te ajudar?", tipo: "recebida" },
   ]);
 
-  // entrada de mensagem do usuário
+  // user message input
   const [novaMensagem, setNovaMensagem] = useState("");
 
-  // alternar o estado do modal
+  // toggle the state of the modal
   const alterarModal = () => setVerModal(!mostrarModal);
 
-  // enviar a mensagem
+  // send the message
   const enviarMensagem = async () => {
-    if (novaMensagem.trim() === "") return; // Evitar enviar mensagem vazia
+    if (novaMensagem.trim() === "") return; // Avoid sending empty messages
 
-    // adiciona a mensagem do usuário ao estado
+    // adds the user's message to the state
     setMensagens([...mensagens, { texto: novaMensagem, tipo: "enviada" }]);
 
-    // limpa o campo de entrada
+    // clear the input field
     setNovaMensagem("");
 
-    // chama a funcao do serviço para obter a resposta da IA
+    // function to get the response from the AI
     const respostaDaIA = await ChatService(novaMensagem);
 
-    // adiciona a resposta da IA ao estado
+    // add the AI ​​response to the state
     setMensagens((prevMensagens) => [
       ...prevMensagens,
       { texto: respostaDaIA, tipo: "recebida" },
@@ -41,8 +41,8 @@ export function Orion() {
       enviarMensagem();
     }
   };
-
-  // copiar o texto para a área de transferência
+ 
+  // copy the text to the clipboard
   const copiarMensagem = (mensagemTexto) => navigator.clipboard.writeText(mensagemTexto);
 
   return (
@@ -60,7 +60,7 @@ export function Orion() {
             <button className="btn-close" onClick={alterarModal}></button>
           </div>
           <div className="corpo-do-chat">
-            {/* Mapeando as mensagens e exibindo no chat */}
+            {/* Mapping messages and displaying them in chat */}
             {mensagens.map((mensagem, index) => (
               <div key={index} className={`menssagem ${mensagem.tipo}`}>
                 <div className="nome-no-chat">
@@ -85,7 +85,7 @@ export function Orion() {
               onKeyDown={KeyDown}
             />
             <button className="btn btn-primary" onClick={enviarMensagem}>
-              Enviar
+              <i class="bi bi-send"></i>
             </button>
           </div>
         </div>

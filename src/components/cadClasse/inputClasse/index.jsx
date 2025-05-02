@@ -1,4 +1,4 @@
-// Input do nome da Turma
+// Class name input
 
 export function InputClasse() {
     return (

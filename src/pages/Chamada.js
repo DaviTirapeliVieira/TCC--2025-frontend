@@ -1,3 +1,5 @@
+// Call screen
+
 import React, { useState, useRef, useEffect } from "react";
 import { Navbar } from "../components/navbarOn";
 import { Orion } from "../components/Orion/modal/index";
@@ -7,17 +9,17 @@ import ModalLoading from "../components/modalLoading/index.jsx";
 
 export default function Chamada() {
   const [alunos, setAlunos] = useState([]);
-  // Informações do aluno no modal
+  // Student information in modal
   const [modalInfo, setModalInfo] = useState(null);
-  // Aluno selecionado
+  // Student selected
   const [selectedIndex, setSelectedIndex] = useState(0);
-  // Ref para os checkboxes
+  // Ref for the checkboxes
   const checkboxesRef = useRef([]);
-  // presença dos alunos
+  // presence of students
   const [presenca, setPresenca] = useState({});
-  // controle de loading
+  // loading control
   const [loading, setLoading] = useState(true);
-  // erros
+  // errors
   const [error, setError] = useState(null);
 
   useEffect(() => {
@@ -31,17 +33,17 @@ export default function Chamada() {
             return acc;
           }, {})
         );
-        setLoading(false); // a requisição terminou
+        setLoading(false); // the request has finished
       } catch (error) {
         setError("Erro ao carregar os dados da chamada");
-        setLoading(false); // a requisição terminou
+        setLoading(false); // the request has finished
       }
     };
 
     alunosInfo();
   }, []);
 
-  // Marca ou desmarcar presença
+  // Mark or unmark attendance
   const MarcarPresenca = (nome) => {
     setPresenca((prevPresenca) => {
       const novaPresenca = { ...prevPresenca, [nome]: !prevPresenca[nome] };
@@ -50,25 +52,25 @@ export default function Chamada() {
     });
   };
 
-  // Abre o modal do aluno
+  // Open the student modal
   const DadosAluno = (aluno) => {
     setModalInfo(aluno);
   };
 
-  // Fecha o modal
+  // Close the modal
   const FecharModal = () => {
     setModalInfo(null);
   };
 
-  // fecha o modal ao clicar fora
+  // close modal on click outside
   const ClicarFora = (e) => {
-    // Verifica se o clique foi fora do conteúdo do modal
+    // Checks if the click was outside the modal content
     if (e.target.classList.contains("modal-background")) {
       FecharModal();
     }
   };
 
-  // Seleciona o aluno usando a seta
+  // Select the student using the arrow
   const MoverComSeta = (e) => {
     if (e.key === "ArrowDown") {
       setSelectedIndex((prevIndex) => (prevIndex + 1) % alunos.length);
@@ -83,12 +85,12 @@ export default function Chamada() {
     }
   };
 
-   // mensagem de carregamento
-   if (loading) {
+  // loading message
+  if (loading) {
     return <ModalLoading message="Carregando..." />;
   }
 
-  // mensagem de erro
+  // error message
   if (error) {
     return <ModalLoading message={error} />;
   }
@@ -97,7 +99,7 @@ export default function Chamada() {
     <div>
       <Navbar />
       <div className="container px-4">
-        <h2 style={{ marginTop: "5rem" }}>
+        <h2>
           Chamada - Classe {alunos[0]?.serie_classe}
         </h2>
         <div className="container" tabIndex="0" onKeyDown={MoverComSeta}>
@@ -114,7 +116,7 @@ export default function Chamada() {
                     type="checkbox"
                     className="form-check-input"
                     checked={presenca[aluno.nome]}
-                    onChange={() => MarcarPresenca(aluno.nome)} // Atualiza o estado da presença
+                    onChange={() => MarcarPresenca(aluno.nome)} // Updates the presence status
                     ref={(el) => (checkboxesRef.current[index] = el)}
                   />
                   <span className="ms-3 cursor-pointer">{aluno.nome}</span>
@@ -122,7 +124,7 @@ export default function Chamada() {
                 <button
                   className="btn btn-info btn-sm"
                   onClick={(e) => {
-                    e.stopPropagation(); // Impede que o clique no botão também acione o onClick da lista
+                    e.stopPropagation(); // Prevents clicking the button from also triggering the list's onClick
                     DadosAluno(aluno);
                   }}
                 >

@@ -1,4 +1,4 @@
-// Input da Foto de Usuario do Aluno
+// Student User Photo Input
 
 export function InputImagem() {
     return(

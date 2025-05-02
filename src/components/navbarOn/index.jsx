@@ -5,7 +5,7 @@ export function Navbar() {
 
 
   return (
-    <nav className="navbar bg-body-tertiary fixed-top">
+    <nav className="navbar bg-body-tertiary">
       <div className="container-fluid">
         <Link className="navbar-brand" to="#">
           NSA WEB
@@ -109,6 +109,38 @@ export function Navbar() {
                   <li>
                     <Link className="dropdown-item" to="#">
                       Cadastrar Professor
+                    </Link>
+                  </li>
+                </ul>
+              </li>
+              <li className="nav-item fs-5 dropdown">
+                <Link
+                  className="nav-link dropdown-toggle"
+                  to="#"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  <i class="bi bi-info-circle me-2"></i>
+                  Informações Escolares
+                </Link>
+                <ul className="dropdown-menu">
+                  <li>
+                    <Link className="dropdown-item" to="/calendario">
+                      Calendario Escolar
+                    </Link>
+                  </li>
+                  <li>
+                    <Link className="dropdown-item" to="/grafico-presenca">
+                      Grafico de Frequencia
+                    </Link>
+                  </li>
+                  <li>
+                    <hr className="dropdown-divider"></hr>
+                  </li>
+                  <li>
+                    <Link className="dropdown-item" to="/ptd-form">
+                      PTD
                     </Link>
                   </li>
                 </ul>

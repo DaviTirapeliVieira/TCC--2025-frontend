@@ -1,4 +1,4 @@
-// Lista com as informacoes do usuario
+// List with user information
 
 import React, { useState, useEffect} from "react";
 import { UserService } from '../../../connection/UserService'

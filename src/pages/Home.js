@@ -1,4 +1,4 @@
-// Tela de Acolhimento
+// Welcome Screen
 
 import { Navbar } from "../components/navbar";
 import { AutoCarrossel } from "../components/home/carrossel";

@@ -1,4 +1,4 @@
-// Input de CPF do Aluno
+// Student CPF Input
 
 export function InputCPF() {
     return (

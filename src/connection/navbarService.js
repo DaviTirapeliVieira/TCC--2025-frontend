@@ -1,34 +1,31 @@
-// Ajax do navbar
-
-import axios from "axios";
-const URL = "http://localhost:8000/api"; // muda a URL
+import api from "./api";
 
 export const buscarAvisos = async () => {
-    try {
-        const resposta = await axios.get(`${URL}/avisos`);
-        return resposta.data;
-    } catch (error) {
-        console.error("Erro ao buscar avisos:", error);
-        return [];
-    }
-}
+  try {
+    const response = await api.get("/avisos");
+    return response.data;
+  } catch (error) {
+    console.error("Erro ao buscar avisos:", error?.response?.data || error.message);
+    return [];
+  }
+};
 
 export const buscarEventos = async () => {
-    try {
-        const resposta = await axios.get(`${URL}/eventos`);
-        return resposta.data;
-    } catch (error) {
-        console.error("Erro ao buscar eventos:", error);
-        return [];
-    }
-}
+  try {
+    const response = await api.get("/eventos");
+    return response.data;
+  } catch (error) {
+    console.error("Erro ao buscar eventos:", error?.response?.data || error.message);
+    return [];
+  }
+};
 
 export const buscarNovidades = async () => {
-    try {
-        const resposta = await axios.get(`${URL}/novidades`);
-        return resposta.data;
-    } catch (error) {
-        console.error("Erro ao buscar novidades:", error);
-        return [];
-    }
-}
+  try {
+    const response = await api.get("/novidades");
+    return response.data;
+  } catch (error) {
+    console.error("Erro ao buscar novidades:", error?.response?.data || error.message);
+    return [];
+  }
+};
