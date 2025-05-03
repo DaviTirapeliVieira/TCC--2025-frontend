@@ -41,14 +41,15 @@ export function Orion() {
       enviarMensagem();
     }
   };
- 
+
   // copy the text to the clipboard
-  const copiarMensagem = (mensagemTexto) => navigator.clipboard.writeText(mensagemTexto);
+  const copiarMensagem = (mensagemTexto) =>
+    navigator.clipboard.writeText(mensagemTexto);
 
   return (
     <>
       <button className="btn btn-primary botao-do-chat" onClick={alterarModal}>
-        O
+        <i class="bi bi-chat-right-text"></i>
       </button>
       {mostrarModal && (
         <div className="sombra-da-pagina" onClick={alterarModal}></div>
@@ -66,7 +67,11 @@ export function Orion() {
                 <div className="nome-no-chat">
                   <strong>{mensagem.tipo === "enviada" ? "User" : "IA"}</strong>
                   {mensagem.tipo === "recebida" && (
-                    <button className="copy-icon" title="Copiar mensagem" onClick={() => copiarMensagem(mensagem.texto)}>
+                    <button
+                      className="copy-icon"
+                      title="Copiar mensagem"
+                      onClick={() => copiarMensagem(mensagem.texto)}
+                    >
                       <i className="bi bi-copy"></i>
                     </button>
                   )}

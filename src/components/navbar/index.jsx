@@ -19,18 +19,16 @@ export function Navbar() {
         <>
           <nav className="navbar bg-body-tertiary">
             <div className="container-fluid">
-              <div className="navbar-brand">
-                NSA WEB
-              </div>
+              <div className="navbar-brand">NSA WEB</div>
               <button
-                className="navbar-toggler"
+                className="btn"
                 type="button"
                 data-bs-toggle="offcanvas"
                 data-bs-target="#offcanvasNavbar"
                 aria-controls="offcanvasNavbar"
                 aria-label="Toggle navigation"
               >
-                <span className="navbar-toggler-icon"></span>
+                <i class="bi bi-list fs-5"></i>
               </button>
               <div
                 className="offcanvas offcanvas-end"
@@ -38,16 +36,18 @@ export function Navbar() {
                 id="offcanvasNavbar"
                 aria-labelledby="offcanvasNavbarLabel"
               >
-                <div className="offcanvas-header">
+                <div className="offcanvas-header d-flex justify-content-between align-items-center w-100 top-0 mt-2 pe-3">
                   <h5 className="offcanvas-title" id="offcanvasNavbarLabel">
                     NSA
                   </h5>
-                  <button
+                  <div
                     type="button"
-                    className="btn-close"
+                    className="btn-c"
                     data-bs-dismiss="offcanvas"
                     aria-label="Close"
-                  ></button>
+                  >
+                    <i class="bi bi-box-arrow-in-up-right fs-5"></i>
+                  </div>
                 </div>
                 <div className="offcanvas-body">
                   <ul className="navbar-nav justify-content-end flex-grow-1 pe-3">
@@ -57,7 +57,7 @@ export function Navbar() {
                         aria-current="page"
                         to="/"
                       >
-                        <i className="bi bi-house me-2"></i> Home
+                        <i className="bi bi-house me-2"></i>Inicial
                       </Link>
                     </li>
                     <li className="nav-item fs-5 dropdown">
@@ -206,18 +206,16 @@ export function Navbar() {
         <>
           <nav className="navbar bg-body-tertiary fixed-top">
             <div className="container-fluid">
-              <div className="navbar-brand">
-                NSA WEB
-              </div>
+              <div className="navbar-brand">NSA WEB</div>
               <button
-                className="navbar-toggler"
+                className="btn"
                 type="button"
                 data-bs-toggle="offcanvas"
                 data-bs-target="#offcanvasNavbar"
                 aria-controls="offcanvasNavbar"
                 aria-label="Toggle navigation"
               >
-                <span className="navbar-toggler-icon"></span>
+                <i class="bi bi-list fs-5"></i>
               </button>
               <div
                 className="offcanvas offcanvas-end"
@@ -225,16 +223,18 @@ export function Navbar() {
                 id="offcanvasNavbar"
                 aria-labelledby="offcanvasNavbarLabel"
               >
-                <div className="offcanvas-header">
+                <div className="offcanvas-header d-flex justify-content-between align-items-center w-100 top-0 mt-2 pe-3">
                   <h5 className="offcanvas-title" id="offcanvasNavbarLabel">
                     NSA
                   </h5>
-                  <button
+                  <div
                     type="button"
-                    className="btn-close"
+                    className="btn-c"
                     data-bs-dismiss="offcanvas"
                     aria-label="Close"
-                  ></button>
+                  >
+                    <i class="bi bi-box-arrow-in-up-right fs-5"></i>
+                  </div>
                 </div>
                 <div className="offcanvas-body">
                   <ul className="navbar-nav justify-content-end flex-grow-1 pe-3">
@@ -244,7 +244,7 @@ export function Navbar() {
                         aria-current="page"
                         to="/"
                       >
-                        <i className="bi bi-house me-2"></i> Home
+                        <i className="bi bi-house me-2"></i>Inicial
                       </Link>
                     </li>
                     <li className="nav-item fs-5 dropdown">
@@ -316,6 +316,12 @@ export function Navbar() {
                         </li>
                       </ul>
                     </li>
+                    <li className="nav-item fs-5">
+                      <Link className="nav-link" to="/login">
+                        <i className="bi bi-door-open me-2"></i>
+                        <strong>Login</strong>
+                      </Link>
+                    </li>
                     <form className="d-flex mt-4" role="search">
                       <input
                         className="form-control me-2"
@@ -327,12 +333,6 @@ export function Navbar() {
                         <i class="bi bi-search"></i>
                       </button>
                     </form>
-                    <li className="nav-item fs-5 position-fixed bottom-0">
-                      <Link className="nav-link" to="/login">
-                        <i className="bi bi-door-open me-2"></i>
-                        <strong>Login</strong>
-                      </Link>
-                    </li>
                   </ul>
                 </div>
               </div>
