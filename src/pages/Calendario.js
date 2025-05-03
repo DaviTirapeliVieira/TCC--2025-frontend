@@ -1,4 +1,4 @@
-import { Navbar } from "../components/navbarOn";
+import { Navbar } from "../components/navbar";
 
 export default function Calendario() {
   return (

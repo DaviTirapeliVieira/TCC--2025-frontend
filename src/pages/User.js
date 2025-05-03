@@ -1,6 +1,6 @@
 // Screen with User information
 
-import { Navbar } from "../components/navbarOn";
+import { Navbar } from "../components/navbar";
 import { InformacaoUsuario } from "../components/user/informacaoUsuario";
 import { Orion } from "../components/Orion/modal/index";
 

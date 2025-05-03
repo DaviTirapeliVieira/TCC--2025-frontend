@@ -1,7 +1,7 @@
 // PTD screen
 
 import React, { useState } from "react";
-import { Navbar } from "../components/navbarOn";
+import { Navbar } from "../components/navbar";
 import { Orion } from "../components/Orion/modal/index";
 
 export default function PTDForm() {

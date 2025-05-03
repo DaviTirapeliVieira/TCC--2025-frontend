@@ -1,7 +1,7 @@
 // Student registration screen.
 
 import FormEstudante from "../components/cadAluno/formEstudante";
-import { Navbar } from "../components/navbarOn";
+import { Navbar } from "../components/navbar";
 
 export default function CadastroAluno() {
   return (

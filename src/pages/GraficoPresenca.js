@@ -11,7 +11,7 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
-import { Navbar } from "../components/navbarOn";
+import { Navbar } from "../components/navbar";
 import axios from "axios";
 
 // Chart.js components

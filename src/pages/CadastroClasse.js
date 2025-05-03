@@ -1,7 +1,7 @@
 // Class registration screen.
 
 import FormClasse from "../components/cadClasse/formClasse";
-import { Navbar } from "../components/navbarOn";
+import { Navbar } from "../components/navbar";
 
 export default function CadastroClasse() {
   return (
