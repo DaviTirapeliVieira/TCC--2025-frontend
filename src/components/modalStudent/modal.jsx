@@ -1,4 +1,4 @@
-import React from "react";
+import "./style.css";
 
 const ModalStudent = ({ modalInfo, FecharModal, ClicarFora }) => {
   if (!modalInfo) return null;
@@ -28,14 +28,9 @@ const ModalStudent = ({ modalInfo, FecharModal, ClicarFora }) => {
           <div className="modal-body">
             <div className="text-center mb-3">
               <img
-                className="img-fluid rounded-circle"
+                className="img-fluid rounded-circle img-student"
                 src={modalInfo.foto}
                 alt={modalInfo.nome}
-                style={{
-                  width: "150px",
-                  height: "150px",
-                  objectFit: "cover",
-                }}
               />
             </div>
             <p>

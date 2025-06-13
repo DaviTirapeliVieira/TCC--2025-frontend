@@ -1,9 +1,13 @@
-import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import ModalConfig from "../modalConfig/index";
 import "./style.css";
 
 export function Navbar() {
   const [usuario, setUsuario] = useState(null);
+  const [showModal, setShowModal] = useState(false);
+  const [fontSize, setFontSize] = useState(16);
+  const [darkMode, setDarkMode] = useState(false);
 
   // Checking to see if the user is logged in
   useEffect(() => {
@@ -17,9 +21,17 @@ export function Navbar() {
     <>
       {usuario ? (
         <>
-          <nav className="navbar bg-body-tertiary">
+          <nav
+            className={`navbar fixed-top  ${darkMode ? "bg-dark" : "bg-light"}`}
+          >
             <div className="container-fluid">
-              <div className="navbar-brand">NSA WEB</div>
+              <div
+                className={`navbar-brand ${
+                  darkMode ? "title-dark" : "title-light"
+                }`}
+              >
+                NSA WEB
+              </div>
               <button
                 className="btn"
                 type="button"
@@ -28,10 +40,14 @@ export function Navbar() {
                 aria-controls="offcanvasNavbar"
                 aria-label="Toggle navigation"
               >
-                <i class="bi bi-list fs-5"></i>
+                <i
+                  class={`bi bi-list fs-5  ${darkMode ? "icon-dark" : ""}`}
+                ></i>
               </button>
               <div
-                className="offcanvas offcanvas-end"
+                className={`offcanvas offcanvas-end ${
+                  darkMode ? "offcanvas-dark" : ""
+                }`}
                 tabIndex="-1"
                 id="offcanvasNavbar"
                 aria-labelledby="offcanvasNavbarLabel"
@@ -204,9 +220,13 @@ export function Navbar() {
         </>
       ) : (
         <>
-          <nav className="navbar bg-body-tertiary fixed-top">
+          <nav
+            className={`navbar fixed-top  ${darkMode ? "bg-dark" : "bg-light"}`}
+          >
             <div className="container-fluid">
-              <div className="navbar-brand">NSA WEB</div>
+              <div className={`navbar-brand ${darkMode ? "title-dark" : ""}`}>
+                NSA WEB
+              </div>
               <button
                 className="btn"
                 type="button"
@@ -215,10 +235,14 @@ export function Navbar() {
                 aria-controls="offcanvasNavbar"
                 aria-label="Toggle navigation"
               >
-                <i class="bi bi-list fs-5"></i>
+                <i
+                  class={`bi bi-list fs-5  ${darkMode ? "icon-dark" : ""}`}
+                ></i>
               </button>
               <div
-                className="offcanvas offcanvas-end"
+                className={`offcanvas offcanvas-end ${
+                  darkMode ? "offcanvas-dark" : ""
+                }`}
                 tabIndex="-1"
                 id="offcanvasNavbar"
                 aria-labelledby="offcanvasNavbarLabel"
@@ -333,6 +357,26 @@ export function Navbar() {
                         <i class="bi bi-search"></i>
                       </button>
                     </form>
+                    <div className="d-flex align-items-center w-100 bottom-0 mb-2 pe-5">
+                      <ModalConfig
+                        show={showModal}
+                        onClose={() => setShowModal(false)}
+                        fontSize={fontSize}
+                        setFontSize={setFontSize}
+                        darkMode={darkMode}
+                        setDarkMode={setDarkMode}
+                      />
+                    </div>
+                    <div className="d-flex position-absolute align-items-center w-100 bottom-0 mb-2 pe-5">
+                      <div className="text-decoration-none fs-5">
+                        <button
+                          className="nav-link btn btn-link"
+                          onClick={() => setShowModal(true)}
+                        >
+                          <i className="bi bi-gear"></i>
+                        </button>
+                      </div>
+                    </div>
                   </ul>
                 </div>
               </div>

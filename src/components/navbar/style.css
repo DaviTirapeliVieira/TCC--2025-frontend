@@ -1,16 +1,32 @@
-.navbar-toggler:focus,
-.btn-close:focus {
-    outline: none;
-    box-shadow: none;
+.navbar {
+  border-bottom: 1px solid #fff;
 }
 
-.navbar-toggler:hover,
-.btn-close:hover {
-    background-color: transparent;
+.title-dark,
+.icon-dark {
+  color: #fff !important;
+}
+
+.title-light {
+  color: #000 !important;
+}
+
+.offcanvas-dark {
+  background-color: #121212 !important;
+  color: #fff !important;
+}
+
+.offcanvas-dark .nav-link,
+.offcanvas-dark .dropdown-menu {
+  color: #fff !important;
+}
+
+.offcanvas-dark .dropdown-menu {
+  background-color: #1e1e1e !important;
 }
 
 .foto-user {
-    width: 50px; 
-    height: 50px; 
-    margin-right: 15px;
+  width: 50px;
+  height: 50px;
+  margin-right: 15px;
 }

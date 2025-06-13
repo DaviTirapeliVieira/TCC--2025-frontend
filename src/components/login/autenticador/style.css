@@ -1,0 +1,12 @@
+.video-face {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  overflow: hidden;
+  background-color: #000;
+}
+
+.video-face video {
+  width: 100%;
+  height: 100%;
+}

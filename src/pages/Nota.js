@@ -1,6 +1,6 @@
 // notes screen
 
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Navbar } from "../components/navbar";
 import { Orion } from "../components/Orion/modal/index";
 import { DadosAlunos } from "../connection/notaService";
